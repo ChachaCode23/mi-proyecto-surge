@@ -2,27 +2,351 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Proyecto Surge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Collection Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --turqueza: #00c9c8;
+      --mamey: #ff6b4a;
+      --azul: #003d5b;
+    }
+
     body {
-      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* NAV */
+    nav {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(0,0,0,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--turqueza);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+
+    .logo span { color: var(--turqueza); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul a:hover { color: var(--turqueza); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--black) 0%, var(--azul) 60%, var(--turqueza) 100%);
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .hero h1 span { color: var(--turqueza); }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      max-width: 500px;
+    }
+
+    .btn {
+      margin-top: 35px;
+      padding: 14px 40px;
+      background: var(--mamey);
       color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255,107,74,0.4);
+    }
+
+    /* CATALOGO */
+    #catalogo {
+      padding: 80px 60px;
+      background: #111;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .section-title span { color: var(--turqueza); }
+
+    .section-subtitle {
+      text-align: center;
+      opacity: 0.5;
+      margin-bottom: 50px;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid #222;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--turqueza);
+    }
+
+    .card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      opacity: 0.5;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 14px;
+      background: var(--mamey);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* CONTACTO */
+    #contacto {
+      padding: 80px 60px;
+      background: linear-gradient(135deg, var(--azul), var(--black));
       text-align: center;
     }
-    h1 { font-size: 3rem; }
-    p { font-size: 1.2rem; opacity: 0.8; }
+
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item i {
+      color: var(--turqueza);
+      font-size: 1.4rem;
+      width: 30px;
+    }
+
+    .contact-item a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-item a:hover { color: var(--turqueza); }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: transform 0.2s;
+    }
+
+    .social-btn:hover { transform: translateY(-3px); }
+    .social-btn.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+    .social-btn.tiktok { background: #010101; color: white; border: 2px solid var(--turqueza); }
+
+    /* FOOTER */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 25px;
+      opacity: 0.5;
+      font-size: 0.85rem;
+      border-top: 1px solid #222;
+    }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Hola Mundo</h1>
-    <p>Desplegado automáticamente con GitHub Actions y Surge.sh</p>
-  </div>
+
+  <nav>
+    <div class="logo">Urban <span>Collection</span></div>
+    <ul>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Urban <span>Collection</span><br>Store</h1>
+    <p>Moda, estilo y exclusividad en un solo lugar.</p>
+    <a href="#catalogo" class="btn">Ver Catálogo</a>
+  </section>
+
+  <section id="catalogo">
+    <h2 class="section-title">Nuestro <span>Catálogo</span></h2>
+    <p class="section-subtitle">Productos seleccionados con estilo y calidad</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">👕</div>
+        <h3>T-Shirts</h3>
+        <p>Diseños exclusivos y telas de calidad</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">⌚</div>
+        <h3>Relojes Invicta</h3>
+        <p>Elegancia y precisión en tu muñeca</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">🧴</div>
+        <h3>Cremas EOS</h3>
+        <p>Hidratación y cuidado corporal premium</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">🌸</div>
+        <h3>Colonias & Perfumes EOS</h3>
+        <p>Fragancias únicas para cada ocasión</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">🧦</div>
+        <h3>Medias Nike</h3>
+        <p>Comodidad y estilo deportivo</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">👟</div>
+        <h3>Tennis Puma</h3>
+        <p>Rendimiento y moda en cada paso</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">👟</div>
+        <h3>Air Force One</h3>
+        <p>El clásico icónico de Nike</p>
+        <span class="tag">Disponible</span>
+      </div>
+      <div class="card">
+        <div class="icon">👜</div>
+        <h3>Crossbody Nautica</h3>
+        <p>Estilo náutico para el día a día</p>
+        <span class="tag">Disponible</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="contact-box">
+      <h2 class="section-title">Contác<span>tanos</span></h2>
+      <p class="section-subtitle">Estamos para ayudarte</p>
+
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:8092988499">809-298-8499</a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://instagram.com/urbancstore2020_" target="_blank" class="social-btn ig">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://tiktok.com/@urban.collection5" target="_blank" class="social-btn tiktok">
+          <i class="fab fa-tiktok"></i> TikTok
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Urban Collection Store. Todos los derechos reservados.</p>
+  </footer>
+
 </body>
 </html>
